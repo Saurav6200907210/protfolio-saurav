@@ -11,7 +11,7 @@ const typingLines = [
 ];
 
 // EDIT HERE: add resume PDF link
-const RESUME_LINK = 'https://your-resume-link.pdf';
+const RESUME_LINK = '/resume.pdf';
 
 const HeroSection = () => {
   const [currentLineIndex, setCurrentLineIndex] = useState(0);

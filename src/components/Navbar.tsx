@@ -53,9 +53,14 @@ const Navbar = () => {
         <a
           href="#hero"
           onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
-          className="font-display text-xl sm:text-2xl font-bold gradient-text"
+          className="flex items-center gap-3 font-display text-xl sm:text-2xl font-bold gradient-text"
         >
-          Saurav Kumar
+          <img
+            src="/logo.png"
+            alt="Portfolio logo"
+            className="h-10 w-10 rounded-full object-cover"
+          />
+          <span>Saurav Kumar</span>
         </a>
 
         {/* Desktop Navigation */}

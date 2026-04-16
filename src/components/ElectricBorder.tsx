@@ -32,14 +32,14 @@ const ElectricBorder = ({
     >
       {/* Animated border container */}
       <div
-        className={`absolute inset-[-2px] rounded-[inherit] overflow-hidden transition-opacity duration-300 ${
+        className={`absolute inset-[-2px] rounded-[inherit] overflow-hidden transition-opacity duration-300 pointer-events-none ${
           showOnHover ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'
         }`}
         style={{ borderRadius }}
       >
         {/* Spinning gradient */}
         <div
-          className="absolute inset-[-50%] animate-spin"
+          className="absolute inset-[-50%] animate-spin pointer-events-none"
           style={{
             background: gradient,
             animationDuration: `${duration}s`,
@@ -57,7 +57,7 @@ const ElectricBorder = ({
 
       {/* Glow effect on hover */}
       <div
-        className={`absolute inset-0 rounded-[inherit] blur-xl transition-opacity duration-500 ${
+        className={`absolute inset-0 rounded-[inherit] blur-xl transition-opacity duration-500 pointer-events-none ${
           showOnHover ? 'opacity-0 group-hover:opacity-30' : 'opacity-20'
         }`}
         style={{

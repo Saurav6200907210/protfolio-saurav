@@ -29,7 +29,7 @@ const contactMethods = [
   {
     name: 'Email',
     icon: Mail,
-    href: `mailto:${EMAIL_ADDRESS}`,
+    href: `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL_ADDRESS}`,
     description: 'Send me a message',
     gradient: 'from-blue-500 to-purple-600',
   },
@@ -86,8 +86,8 @@ const ContactSection = () => {
               >
                 <a
                   href={method.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={method.href.startsWith('mailto:') ? undefined : '_blank'}
+                  rel={method.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
                   className="contact-card group h-full"
                 >
                   {/* Icon Container */}
