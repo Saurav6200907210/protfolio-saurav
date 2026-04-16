@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Portfolio Design System - Modern, Colorful, Premium */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Core palette - Vibrant blues and teals */
+    --background: 220 25% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 25% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 25% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 190 90% 50%;
+    --primary-foreground: 220 25% 6%;
+
+    --secondary: 260 80% 60%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 20% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 330 80% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 190 90% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradient colors */
+    --gradient-start: 190 90% 50%;
+    --gradient-mid: 260 80% 60%;
+    --gradient-end: 330 80% 60%;
+
+    /* Glass effect */
+    --glass-bg: 220 25% 10% / 0.7;
+    --glass-border: 210 40% 98% / 0.1;
+
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(190 90% 50% / 0.3);
+    --shadow-soft: 0 20px 60px hsl(220 25% 0% / 0.5);
+
+    /* Sidebar defaults */
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 190 90% 50%;
+    --sidebar-primary-foreground: 220 25% 6%;
+    --sidebar-accent: 220 20% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 20% 18%;
+    --sidebar-ring: 190 90% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism effect */
+  .glass {
+    @apply backdrop-blur-xl border;
+    background: hsl(var(--glass-bg));
+    border-color: hsl(var(--glass-border));
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--gradient-start)) 0%,
+      hsl(var(--gradient-mid)) 50%,
+      hsl(var(--gradient-end)) 100%
+    );
+  }
+
+  /* Primary gradient */
+  .gradient-primary {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-start)) 0%,
+      hsl(var(--gradient-mid)) 100%
+    );
+  }
+
+  /* Full gradient */
+  .gradient-full {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-start)) 0%,
+      hsl(var(--gradient-mid)) 50%,
+      hsl(var(--gradient-end)) 100%
+    );
+  }
+
+  /* Gradient border */
+  .gradient-border {
+    @apply relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl p-[2px];
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-start)) 0%,
+      hsl(var(--gradient-mid)) 50%,
+      hsl(var(--gradient-end)) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Glow effect on hover */
+  .glow-hover {
+    @apply transition-all duration-300;
+  }
+
+  .glow-hover:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Skill card glass */
+  .skill-card {
+    @apply glass rounded-xl p-4 relative overflow-hidden transition-all duration-300;
+  }
+
+  .skill-card:hover {
+    @apply scale-105;
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Project card */
+  .project-card {
+    @apply relative rounded-2xl overflow-hidden transition-all duration-500;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-glow), var(--shadow-soft);
+  }
+
+  /* Contact card */
+  .contact-card {
+    @apply glass rounded-2xl p-8 flex flex-col items-center gap-4 transition-all duration-300;
+  }
+
+  .contact-card:hover {
+    @apply scale-105;
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Scroll indicator animation */
+  @keyframes scroll-indicator {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(10px);
+      opacity: 1;
+    }
+  }
+
+  .animate-scroll-indicator {
+    animation: scroll-indicator 2s ease-in-out infinite;
+  }
+
+  /* Typing cursor */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .typing-cursor::after {
+    content: '|';
+    @apply ml-1 text-primary;
+    animation: blink 1s step-end infinite;
+  }
+
+  /* Fade in up animation */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+
+  /* Slide in right */
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.6s ease-out forwards;
+  }
+
+  /* Float animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Horizontal scroll track */
+  .horizontal-scroll-track {
+    @apply flex gap-6 py-4;
+  }
+
+  /* Hide scrollbar */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  /* Stagger animation delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+}
